@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: server
+  cloud:
+    config:
+      label: master
+      uri: http://user:password@configserver:8888

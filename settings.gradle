@@ -1,0 +1,8 @@
+rootProject.name = 'microservice'
+
+include 'microservice-discovery'
+include 'microservice-configserver'
+include 'microservice-server'
+include 'microservice-hystrix-dashboard'
+include 'microservice-client'
+

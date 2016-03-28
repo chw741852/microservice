@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+eureka:
+  instance:
+    hostname: server
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+ribbon:
+  eureka:
+    enabled: true
+
+zuul:
+  routes:
+    rpcserver: /rpc/**
