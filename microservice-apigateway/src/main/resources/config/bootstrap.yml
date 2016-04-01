@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+#      label: master
+      uri: http://user:password@localhost:8888
