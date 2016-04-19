@@ -3,5 +3,6 @@ spring:
     name: gateway
   cloud:
     config:
-#      label: master
       uri: http://user:password@localhost:8888
+encrypt:
+  fail-on-error: false
