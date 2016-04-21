@@ -4,4 +4,4 @@ spring:
   cloud:
     config:
 #      label: master
-      uri: http://user:password@localhost:8888
+      uri: http://user:password@configserver:8888

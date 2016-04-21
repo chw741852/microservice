@@ -1,0 +1,34 @@
+version: '2'
+services:
+  gateway:
+    image: microservice/gateway:1.0-SNAPSHOT
+    ports:
+      - '10000:10000'
+    links:
+      - discovery
+      - configserver
+      - server
+  discovery:
+    image: microservice/discovery:1.0-SNAPSHOT
+    ports:
+      - '8761:8761'
+  configserver:
+    image: microservice/configserver:1.0-SNAPSHOT
+    ports:
+      - '8888:8888'
+    links:
+      - discovery
+  hystrix:
+    image: microservice/hystrix:1.0-SNAPSHOT
+    ports:
+      - '7979:7979'
+    links:
+      - discovery
+      - configserver
+  server:
+    image: microservice/server:1.0-SNAPSHOT
+    ports:
+      - '8080:8080'
+    links:
+      - discovery
+      - configserver

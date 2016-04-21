@@ -1,2 +1,9 @@
 server:
   port: 7979
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
