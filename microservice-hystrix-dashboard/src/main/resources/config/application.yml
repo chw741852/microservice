@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    prefer-ip-address: true
+    hostname: hystrix
   client:
     service-url:
       defaultZone: http://discovery:8761/eureka/
