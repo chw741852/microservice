@@ -1,3 +1,6 @@
 spring:
   application:
-    name: discovery
+    name: hystrix
+  cloud:
+    config:
+      uri: http://user:password@localhost:8888

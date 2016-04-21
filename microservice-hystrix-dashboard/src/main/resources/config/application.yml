@@ -1,2 +1,9 @@
 server:
   port: 7979
+
+eureka:
+  instance:
+    hostname: hystrix
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

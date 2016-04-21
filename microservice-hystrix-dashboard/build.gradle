@@ -13,8 +13,10 @@ buildscript {
 apply plugin: 'spring-boot'
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.cloud:spring-cloud-starter-config')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
