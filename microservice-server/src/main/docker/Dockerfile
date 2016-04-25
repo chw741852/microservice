@@ -1,1 +1,0 @@
-FROM daocloud.io/library/java:8

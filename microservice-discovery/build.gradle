@@ -5,7 +5,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.M5"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.RC2"
     }
 }
 

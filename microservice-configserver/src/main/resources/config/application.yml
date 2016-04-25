@@ -7,7 +7,7 @@ spring:
       server:
         git:
           uri: https://github.com/cai-cloud/config-repo
-          basedir: build/cloudconfig
+          basedir: /cloudconfig
 encrypt:
   key: cai
 security:
@@ -18,7 +18,7 @@ security:
 eureka:
   instance:
     hostname: configserver
-    prefer-ip-address: true
+#    prefer-ip-address: true
   client:
     service-url:
-      default: http://discovery:8761/eureka/
+      defaultZone: http://discovery:8761/eureka/
