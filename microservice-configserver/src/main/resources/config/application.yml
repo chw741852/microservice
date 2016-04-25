@@ -21,4 +21,4 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      default: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
