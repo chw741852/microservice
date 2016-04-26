@@ -19,3 +19,13 @@
 4. microservice-server
 
    server端，配置了@EnableHystrix
+   
+## 二、运行
+mac环境
+> cd microservice
+./gradlew buildImage
+.....
+cd docker
+docker-compose up
+
+linux环境下需要注释掉build.gradle中的task docker
