@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <!--<Property name="log_pattern">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>-->
+        <Property name="console_pattern">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%wEx</Property>
+        <Property name="file_pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${sys:PID} --- [%15.15t] %-40.40c{1.} : %m%n%wEx</Property>
+        <!-- 日志文件大小 -->
+        <Property name="file_size">10MB</Property>
+        <Property name="file_name">build/logs/server</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 输出debug及以上级别的信息（onMatch），其他拒绝（onMismatch） -->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${console_pattern}"/>
+        </Console>
+
+        <!-- 输出trace及以上级别的日志到指定文件，最大10M，warn、error除外 -->
+        <RollingFile name="app_debug" fileName="${file_name}-debug.log" filePattern="${logfile_path}/app_trace-%d{yyyy-MM-dd}-%i.log.gz">
+            <SizeBasedTriggeringPolicy size="${file_size}"/>
+            <PatternLayout pattern="${file_pattern}"/>
+            <Filters>
+                <!-- 拒绝输出warn及以上 -->
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <!-- 输出debug及以上 -->
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+
+        <!-- 输出warn及以上级别的日志到指定文件 -->
+        <RollingFile name="app_warn" fileName="${file_name}-warn.log" filePattern="${logfile_path}/app_warn-%d{yyyy-MM-dd}-%i.log.gz">
+            <SizeBasedTriggeringPolicy size="${file_size}"/>
+            <PatternLayout pattern="${file_pattern}"/>
+            <!-- 输出warn及以上 -->
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+        </RollingFile>
+    </Appenders>
+    <loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="app_debug"/>
+            <AppenderRef ref="app_warn"/>
+        </Root>
+    </loggers>
+</Configuration>

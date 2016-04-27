@@ -11,11 +11,10 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 /**
  * Created by caihongwei on 16/3/28 上午10:46.
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.hong.server")
 @EnableEurekaClient
 @EnableZuulProxy
 @EnableHystrix
-@RefreshScope
 public class ServerApplication {
 
     public static void main(String[] args) {

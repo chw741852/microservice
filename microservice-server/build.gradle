@@ -16,14 +16,30 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
     compile('org.springframework.cloud:spring-cloud-starter-zuul')
-//    compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
+    compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:' + mybatisVersion)
+    runtime('mysql:mysql-connector-java:' + mysqlVersion)
+    compile('com.alibaba:druid:' + druidVersion)
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+configurations {
+    all*.exclude module: 'spring-boot-starter-logging'
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.M5"
+    }
+}
+
+sourceSets {
+    main {
+        resources.srcDirs = ['src/main/resources', 'src/main/java']
+        resources.includes = ['**/*.xml', '**/*.yml']
     }
 }
 

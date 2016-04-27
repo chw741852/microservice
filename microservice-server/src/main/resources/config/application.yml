@@ -9,10 +9,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-ribbon:
-  eureka:
-    enabled: true
-
-zuul:
-  routes:
-    rpcserver: /rpc/**
+mybatis:
+  type-aliases-package: com.hong.server.domain
+  mapper-locations: classpath*:com/hong/server/**/*Mapper.xml

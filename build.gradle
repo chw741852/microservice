@@ -8,6 +8,9 @@ allprojects {
 subprojects {
     ext {
         springBootVersion = '1.3.3.RELEASE'
+        mybatisVersion = '1.1.1'
+        mysqlVersion = '5.1.38'
+        druidVersion = '1.0.18'
     }
 
     apply plugin: 'java'
