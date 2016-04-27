@@ -22,10 +22,10 @@
    
 ## 二、运行
 mac环境
-> cd microservice
+> ```cd microservice
 ./gradlew buildImage
 .....
 cd docker
-docker-compose up
+docker-compose up```
 
 linux环境下需要注释掉build.gradle中的task docker
