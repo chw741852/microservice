@@ -29,3 +29,7 @@ cd docker
 docker-compose up
 
 linux环境下需要注释掉build.gradle中的task docker
+   * 测试服务，配置了@EnableHystrix;
+   * 配置了log4j2, 使用阿里druid和mybatis-spring-boot-starter连接MySQL;
+   * 配置了spring-cloud-bus,默认使用本地rabbitMQ;
+   

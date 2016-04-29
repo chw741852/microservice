@@ -9,6 +9,6 @@ eureka:
     service-url:
       defaultZone: http://discovery:8761/eureka/
 
-ribbon:
-  eureka:
-    enabled: true
+mybatis:
+  type-aliases-package: com.hong.server.domain
+  mapper-locations: classpath*:com/hong/server/**/*Mapper.xml
