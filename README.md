@@ -25,11 +25,17 @@
   * 配置了spring-cloud-bus,默认使用本地rabbitMQ;
    
 ## 二、运行
-mac环境
+1. mac环境
 > cd microservice
 ./gradlew buildImage
 .....
 cd docker
 docker-compose up
 
-linux环境下需要注释掉build.gradle中的task docker
+2. linux环境下需要注释掉build.gradle中的task docker
+如果提示连接不上docker，是因为默认启动`service docker start`并未暴露2375端口；
+请执行
+```
+service docker stop
+docker -d -H unix:///var/run/docker.sock -H 0.0.0.0:2375
+```
