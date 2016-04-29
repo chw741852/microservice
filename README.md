@@ -27,17 +27,17 @@
 ## 二、运行
 1. mac环境
 ```
-> cd microservice
+cd microservice
 ./gradlew buildImage
 .....
 cd docker
 docker-compose up
 ```
-
-2. linux环境下需要注释掉build.gradle中的task docker
+2. linux环境
+需要注释掉build.gradle中的task docker，然后执行以上命令
 如果提示连接不上docker，是因为默认启动`service docker start`并未暴露2375端口；
 请执行
-   ```
+```
 service docker stop
 docker -d -H unix:///var/run/docker.sock -H 0.0.0.0:2375
 ```
