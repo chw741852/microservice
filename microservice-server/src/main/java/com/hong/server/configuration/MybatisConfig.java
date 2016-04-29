@@ -18,19 +18,6 @@ import javax.sql.DataSource;
 @MapperScan("com.hong.server.dao")
 public class MybatisConfig {
     /**
-     * 用于扫描mybatis配置文件
-     */
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-//        SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
-//        factory.setDataSource(dataSource);
-//        factory.setTypeAliasesPackage("com.hong.server.domain");
-//        factory.setMapperLocations(new PathMatchingResourcePatternResolver()
-//                .getResources("classpath*:com/hong/**/dao/*Mapper.xml"));
-//        return factory.getObject();
-//    }
-
-    /**
      * 配置druid数据库连接池
      */
     @Bean(initMethod = "init", destroyMethod = "close")
