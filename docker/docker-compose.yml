@@ -32,3 +32,12 @@ services:
     links:
       - discovery
       - configserver
+    depends_on:
+      - mysql
+  mysql:
+    image: daocloud.io/mysql:5.7.11
+    volumns:
+      - /home/caihongwei/database:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=111111
