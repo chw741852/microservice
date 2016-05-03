@@ -36,7 +36,7 @@ services:
       - mysql
   mysql:
     image: daocloud.io/mysql:5.7.11
-    volumns:
+    volumes:
       - /home/caihongwei/database:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=test
