@@ -3,5 +3,5 @@ spring:
     name: server
   cloud:
     config:
-#      label: master
+      label: ordinary
       uri: http://user:password@localhost:8888
