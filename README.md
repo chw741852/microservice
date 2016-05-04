@@ -23,6 +23,7 @@
   * 测试服务，配置了@EnableHystrix;
   * 配置了log4j2, 使用阿里druid和mybatis-spring-boot-starter连接MySQL;
   * 配置了spring-cloud-bus,默认使用本地rabbitMQ;
+  * 依赖mysql
    
 ## 二、运行
 * mac环境
@@ -40,4 +41,8 @@ docker-compose up
 ```
 service docker stop
 docker -d -H unix:///var/run/docker.sock -H 0.0.0.0:2375
+```
+* 单独运行
+```
+docker run --name server2 --net docker_default --link docker_discovery_1 --link docker_configserver_1 --link docker_mysql_1 -d -p 8081:8080 microservice/server:1.0-SNAPSHOT
 ```
