@@ -5,3 +5,5 @@ include 'microservice-configserver'
 include 'microservice-server'
 include 'microservice-hystrix-dashboard'
 include 'microservice-apigateway'
+include 'microservice-service-security'
+

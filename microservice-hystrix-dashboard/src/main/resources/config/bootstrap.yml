@@ -3,4 +3,5 @@ spring:
     name: hystrix
   cloud:
     config:
+      label: ordinary
       uri: http://user:password@localhost:8888

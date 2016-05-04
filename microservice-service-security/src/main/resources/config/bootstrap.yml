@@ -1,9 +1,7 @@
 spring:
   application:
-    name: gateway
+    name: server
   cloud:
     config:
       label: ordinary
       uri: http://user:password@localhost:8888
-encrypt:
-  fail-on-error: false

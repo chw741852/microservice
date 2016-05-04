@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+mybatis:
+  type-aliases-package: com.hong.security.domain
+  mapper-locations: classpath*:com/hong/server/**/*Mapper.xml
