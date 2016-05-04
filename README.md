@@ -43,6 +43,7 @@ service docker stop
 docker -d -H unix:///var/run/docker.sock -H 0.0.0.0:2375
 ```
 * 单独运行
+因为compose是同时启动所有容器,server容器则获取不到configserver的配置,且连接不上mysql,需要单独启动
 ```
-docker run --name server2 --net docker_default --link docker_discovery_1 --link docker_configserver_1 --link docker_mysql_1 -d -p 8081:8080 microservice/server:1.0-SNAPSHOT
+docker run --name server --net docker_default --link docker_discovery_1 --link docker_configserver_1 --link docker_mysql_1 -d -p 8081:8080 microservice/server:1.0-SNAPSHOT
 ```
