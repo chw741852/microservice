@@ -2,13 +2,8 @@ package com.hong.server.controller;
 
 import com.hong.server.domain.User;
 import com.hong.server.service.UserService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.slf4j.Log4jLogger;
-import org.apache.logging.slf4j.Log4jLoggerFactory;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
