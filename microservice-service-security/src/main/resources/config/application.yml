@@ -47,7 +47,20 @@ druid:
 security:
   user:
     role:
+
+# spring data jpa
 spring:
   jpa:
+    database: MYSQL
+    show-sql: true
+    database-platform:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true
+        jdbc:
+          fetch_size: 100
+          batch_size: 50

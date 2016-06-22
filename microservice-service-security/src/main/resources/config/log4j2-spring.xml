@@ -46,7 +46,7 @@
         <Logger name="com.zenmen.mochui" level="debug">
             <AppenderRef ref="app_debug"/>
         </Logger>
-        <Root level="info">
+        <Root>
             <AppenderRef ref="Console"/>
             <AppenderRef ref="app_warn"/>
         </Root>
