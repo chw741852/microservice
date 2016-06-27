@@ -43,11 +43,6 @@ druid:
     #监控统计用的filter:stat 日志用的filter:log4j 防御SQL注入的filter:wall
     filters: stat
 
-
-security:
-  user:
-    role:
-
 # spring data jpa
 spring:
   jpa:
@@ -55,7 +50,7 @@ spring:
     show-sql: true
     database-platform:
     hibernate:
-      ddl-auto: update
+#      ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
@@ -64,3 +59,6 @@ spring:
         jdbc:
           fetch_size: 100
           batch_size: 50
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5

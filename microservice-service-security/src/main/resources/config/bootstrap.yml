@@ -1,7 +1,7 @@
 spring:
   application:
     name: server
-  cloud:
-    config:
-      label: ordinary
-      uri: http://user:password@localhost:8888
+#  cloud:
+#    config:
+#      label: ordinary
+#      uri: http://user:password@localhost:8888
