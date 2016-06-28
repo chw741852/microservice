@@ -23,10 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
+                .csrf().disable()
                 .formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check")
                 .permitAll()
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
+                .logout().logoutUrl("/j_spring_security_logout").invalidateHttpSession(true)
+                .permitAll();
     }
 }

@@ -6,10 +6,10 @@
 </head>
 <body>
 <h1>Login</h1>
-<form action="/login" method="post">
-    Username: <input name="username"/><br>
-    Password: <input type="password" name="password"/>
-    <button type="submit">登录</button>
+<form th:action="@{/j_spring_security_check}" th:method="post">
+    Username: <input th:name="username"/><br>
+    Password: <input th:type="password" th:name="password"/>
+    <button th:type="submit">登录</button>
 </form>
 </body>
 </html>

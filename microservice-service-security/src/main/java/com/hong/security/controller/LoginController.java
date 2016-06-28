@@ -17,23 +17,4 @@ public class LoginController {
 
         return "login";
     }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String username, String password, HttpServletRequest request) {
-        try {
-            request.login(username, password);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
-        System.out.println(username);
-        System.out.println(password);
-
-        return "";
-    }
-
-    @RequestMapping(value = "logout", method = RequestMethod.POST)
-    public String logout() {
-
-        return "";
-    }
 }
