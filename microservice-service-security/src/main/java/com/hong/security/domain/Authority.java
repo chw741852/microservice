@@ -9,9 +9,10 @@ import java.util.Date;
 
 /**
  * Created by caihongwei on 16/6/20 下午3:23.
+ * 权限
  */
 @Entity
-public class Role extends AbstractPersistable<Long> implements GrantedAuthority {
+public class Authority extends AbstractPersistable<Long> implements GrantedAuthority {
     private String authority;
 
     @LastModifiedDate

@@ -1,36 +1,27 @@
 package com.hong.security.domain;
 
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by caihongwei on 16/6/20 下午3:12.
  */
 @Entity
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class User extends AbstractPersistable<Long> implements UserDetails {
     private String username;
     private String password;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-    @OneToMany
-    private Set<Role> authorities;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // TODO 动态设置
+    private List<Authority> authorities;
 
     public void setUsername(String username) {
         this.username = username;
@@ -56,7 +47,7 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public void setAuthorities(Set<Role> authorities) {
+    public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
     }
 
