@@ -34,10 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "    gm.username = ? and g.id = ga.group_id and g.id = gm.group_id";
         auth.jdbcAuthentication()
                 .dataSource(datasource)
-                .withDefaultSchema()
-                .usersByUsernameQuery("")
-                .authoritiesByUsernameQuery("")
-                .groupAuthoritiesByUsername("")
+//                .withDefaultSchema()
+//                .usersByUsernameQuery("")
+//                .authoritiesByUsernameQuery("")
+//                .groupAuthoritiesByUsername("")
                 .rolePrefix("ROLE_");
 //                .passwordEncoder(new Md5PasswordEncoder());
     }

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by caihongwei on 16/7/4 下午9:10.
  * 权限组
  */
-@Entity
+@Entity(name = "`Group`")
 public class Group extends AbstractPersistable<Long> {
     @Column(length = 50)
     private String groupName;

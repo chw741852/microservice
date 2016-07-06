@@ -35,7 +35,7 @@ public class DataConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.hong.security.**.domain");
+        factory.setPackagesToScan("com.hong.security.domain");
         factory.setDataSource(dataSource());
         factory.afterPropertiesSet();
 

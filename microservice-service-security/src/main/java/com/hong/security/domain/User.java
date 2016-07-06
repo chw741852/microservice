@@ -21,6 +21,7 @@ public class User extends AbstractPersistable<Long> implements UserDetails {
     private boolean enabled;
 
     // TODO 动态设置
+    @Transient
     private List<Authority> authorities;
 
     public void setUsername(String username) {

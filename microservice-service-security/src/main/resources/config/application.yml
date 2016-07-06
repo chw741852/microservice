@@ -49,9 +49,9 @@ spring:
   jpa:
     database: MYSQL
     show-sql: true
-    database-platform:
+#    database-platform:
     hibernate:
-#      ddl-auto: update
+      ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
