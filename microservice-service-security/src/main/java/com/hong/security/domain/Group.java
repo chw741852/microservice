@@ -3,10 +3,7 @@ package com.hong.security.domain;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -14,15 +11,17 @@ import java.util.List;
  * Created by caihongwei on 16/7/4 下午9:10.
  * 权限组
  */
-@Entity(name = "`Group`")
+@Entity(name = "Groups")
 public class Group extends AbstractPersistable<Long> {
     @Column(length = 50)
     private String groupName;
 
-    @OneToMany
-    private List<User> users;
+    @ManyToMany
+    @JoinTable(inverseJoinColumns = @JoinColumn(name = "user_id"))
+    protected List<User> users;
 
     @ManyToMany
+    @JoinTable(inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private List<Authority> authorities;
 
     @LastModifiedDate

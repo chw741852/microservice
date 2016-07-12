@@ -28,10 +28,32 @@ public class UserServiceTest {
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
-        user.setUsername("caihongwei1");
+        user.setUsername("cai2");
         user.setPassword("123456");
 
-        long id = userService.create(user);
-        assertEquals(id, 5);
+        user = userService.save(user);
+        assertEquals(user.getId(), Long.valueOf(3));
+    }
+
+    @Test
+    public void testUpdate() {
+        User user = userService.findById(1);
+        assertEquals(user.getPassword(), "123456");
+
+        user.setPassword("123123");
+        userService.save(user);
+
+        User newUser = userService.findById(1);
+        assertEquals(newUser.getPassword(), "123123");
+    }
+
+    @Test
+    public void testChangePassword() {
+        String username = "cai2";
+        String oldPassword = "1234567";
+        String newPassword = "123123";
+
+        boolean b = userService.changePassword(username, oldPassword, newPassword);
+        assertFalse(b);
     }
 }

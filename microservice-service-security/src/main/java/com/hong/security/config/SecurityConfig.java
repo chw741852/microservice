@@ -1,11 +1,12 @@
 package com.hong.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -25,21 +26,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // TODO
         String usersByUsernameQuery = "select * from user where username = ?";
-        String authoritiesByUsernameQuery = "select username,authority from authorities where username = ?";
-        String groupAuthoritiesByUsername = "select" +
-                "   g.id, g.group_name, ga.authority" +
-                "   from" +
-                "    groups g, group_members gm, group_authorities ga" +
-                "   where" +
-                "    gm.username = ? and g.id = ga.group_id and g.id = gm.group_id";
+        String authoritiesByUsernameQuery = "select a.username, b.authority from user a " +
+                " left join Groups_Users gm on a.id=gm.user_id " +
+                " left join Groups_Authorities ga on gm.groups_id=ga.groups_id " +
+                " right join Authority b on b.id=ga.authority_id" +
+                " where a.username=?";
+        String groupAuthoritiesByUsername = "select g.id, g.group_name, a.authority" +
+                " from Groups g, User u, Groups_Users gm, Groups_Authorities ga, Authority a" +
+                " where u.username=? and g.id=gm.groups_id and u.id=gm.user_id" +
+                " and g.id=ga.groups_id and ga.authority_id=a.id;";
         auth.jdbcAuthentication()
                 .dataSource(datasource)
-//                .withDefaultSchema()
-//                .usersByUsernameQuery("")
-//                .authoritiesByUsernameQuery("")
-//                .groupAuthoritiesByUsername("")
-                .rolePrefix("ROLE_");
-//                .passwordEncoder(new Md5PasswordEncoder());
+                .usersByUsernameQuery(usersByUsernameQuery)
+                .authoritiesByUsernameQuery(authoritiesByUsernameQuery)
+                .groupAuthoritiesByUsername(groupAuthoritiesByUsername)
+                .rolePrefix("ROLE_")
+                .and().userDetailsService(userDetailsService());
     }
 
     @Override
@@ -54,5 +56,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutUrl("/j_spring_security_logout").invalidateHttpSession(true)
                 .permitAll();
+    }
+
+    @Bean
+    public MyUserDetailsService userDetailsService() {
+        return new MyUserDetailsService();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

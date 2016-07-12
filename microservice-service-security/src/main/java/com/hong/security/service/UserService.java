@@ -4,6 +4,10 @@ import com.hong.security.domain.User;
 import com.hong.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,15 +21,28 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private CrudRepository<User, Long> repository;
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
-    public long create(User user) {
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            return 0;
-        }
-        user = repository.save(user);
+    public User save(User user) {
+        if (user.isNew() && userRepository.findByUsername(user.getUsername()) != null)
+            return null;
 
-        return user.getId();
+        return userRepository.save(user);
+    }
+
+    public User findById(long id) {
+        return userRepository.findOne(id);
+    }
+
+    @Transactional
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, oldPassword));
+
+        newPassword = passwordEncoder.encode(newPassword);
+        return userRepository.updatePasswordByUsername(username, newPassword) > 0;
     }
 }

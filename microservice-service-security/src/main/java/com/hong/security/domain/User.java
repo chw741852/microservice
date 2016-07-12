@@ -12,6 +12,7 @@ import java.util.List;
  * Created by caihongwei on 16/6/20 下午3:12.
  */
 @Entity
+@Table
 public class User extends AbstractPersistable<Long> implements UserDetails {
     private String username;
     private String password;
@@ -19,6 +20,9 @@ public class User extends AbstractPersistable<Long> implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Group> groups;
 
     // TODO 动态设置
     @Transient
@@ -50,6 +54,14 @@ public class User extends AbstractPersistable<Long> implements UserDetails {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
     @Override
