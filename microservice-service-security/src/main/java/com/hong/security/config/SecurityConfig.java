@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery(authoritiesByUsernameQuery)
                 .groupAuthoritiesByUsername(groupAuthoritiesByUsername)
                 .rolePrefix("ROLE_")
-                .and().userDetailsService(userDetailsService());
+                .and()
+                .userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override

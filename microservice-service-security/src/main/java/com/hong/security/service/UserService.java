@@ -31,6 +31,7 @@ public class UserService {
         if (user.isNew() && userRepository.findByUsername(user.getUsername()) != null)
             return null;
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -43,6 +44,7 @@ public class UserService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, oldPassword));
 
         newPassword = passwordEncoder.encode(newPassword);
-        return userRepository.updatePasswordByUsername(username, newPassword) > 0;
+        int r = userRepository.updatePasswordByUsername(username, newPassword);
+        return r > 0;
     }
 }

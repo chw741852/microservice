@@ -28,11 +28,11 @@ public class UserServiceTest {
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
-        user.setUsername("cai2");
+        user.setUsername("cai");
         user.setPassword("123456");
 
         user = userService.save(user);
-        assertEquals(user.getId(), Long.valueOf(3));
+        assertEquals(user.getId(), Long.valueOf(2));
     }
 
     @Test
@@ -49,11 +49,11 @@ public class UserServiceTest {
 
     @Test
     public void testChangePassword() {
-        String username = "cai2";
-        String oldPassword = "1234567";
+        String username = "cai";
+        String oldPassword = "123456";
         String newPassword = "123123";
 
         boolean b = userService.changePassword(username, oldPassword, newPassword);
-        assertFalse(b);
+        assertTrue(b);
     }
 }

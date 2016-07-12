@@ -12,7 +12,6 @@ import java.util.List;
  * Created by caihongwei on 16/6/20 下午3:12.
  */
 @Entity
-@Table
 public class User extends AbstractPersistable<Long> implements UserDetails {
     private String username;
     private String password;
