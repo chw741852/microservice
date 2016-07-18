@@ -49,3 +49,7 @@ spring:
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
+
+mybatis:
+  type-aliases-package: com.hong.security.domain
+  mapper-locations: classpath:com/hong/security/mapper/*Mapper.xml

@@ -24,17 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("user").password("123123").roles("USER");
 
-        // TODO
         String usersByUsernameQuery = "select * from user where username = ?";
-        String authoritiesByUsernameQuery = "select a.username, b.authority from user a " +
-                " left join Groups_Users gm on a.id=gm.user_id " +
-                " left join Groups_Authorities ga on gm.groups_id=ga.groups_id " +
-                " right join Authority b on b.id=ga.authority_id" +
-                " where a.username=?";
-        String groupAuthoritiesByUsername = "select g.id, g.group_name, a.authority" +
-                " from Groups g, User u, Groups_Users gm, Groups_Authorities ga, Authority a" +
-                " where u.username=? and g.id=gm.groups_id and u.id=gm.user_id" +
-                " and g.id=ga.groups_id and ga.authority_id=a.id;";
+        String authoritiesByUsernameQuery = "select gm.username, ga.authority" +
+                " from groups g, group_user gm, group_authority ga" +
+                " where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id";
+        String groupAuthoritiesByUsername = "select g.id, g.group_name, ga.authority" +
+                " from groups g, group_user gm, group_authority ga" +
+                " where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id";
         auth.jdbcAuthentication()
                 .dataSource(datasource)
                 .usersByUsernameQuery(usersByUsernameQuery)
