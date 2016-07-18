@@ -24,7 +24,7 @@ public class UserService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public User save(User user) {
