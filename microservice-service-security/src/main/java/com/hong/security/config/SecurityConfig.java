@@ -21,8 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("123123").roles("USER");
+//        auth.inMemoryAuthentication()
+//                .withUser("user").password("123123").roles("USER");
 
         String usersByUsernameQuery = "select * from user where username = ?";
         String authoritiesByUsernameQuery = "select gm.username, ga.authority" +
