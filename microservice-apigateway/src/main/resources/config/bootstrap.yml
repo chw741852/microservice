@@ -3,7 +3,6 @@ spring:
     name: gateway
   cloud:
     config:
-      label: ordinary
-      uri: http://user:password@localhost:8888
+      uri: http://hong:111111@localhost:8888
 encrypt:
   fail-on-error: false

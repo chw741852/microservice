@@ -6,19 +6,34 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/cai-cloud/config-repo
-          basedir: build/cloudconfig
-encrypt:
-  key: cai
+          uri: file://Users/caihongwei/Documents/Development/MyGit/sora-repo
+          repos:
+            development:
+              pattern:
+                - */staging
+              uri: git@git.oschina.net:cai2008/sora-repo.git
+              hostKeyAlgorithm: ecdsa-sha2-nistp256
+#          basedir: cloudconfig
+
 security:
   user:
-    name: user  # 默认user
-    password: password # 不设置密码时，在启动时会随机生成一个密码，log级别info打印
+    name: hong  # 默认user
+    password: 111111 # 不设置密码时，在启动时会随机生成一个密码，log级别info打印
 
 eureka:
   instance:
-    hostname: configserver
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@127.0.0.1:8761/eureka
+
+logging:
+  config: classpath:config/log4j2-spring.xml
+
+---
+spring:
+  profiles: test
+
+---
+spring:
+  profiles: product

@@ -1,12 +1,21 @@
 server:
   port: 8761
+
 eureka:
+  server:
+    enableSelfPreservation: false
   instance:
     hostname: discovery
   client:
     registerWithEureka: false
     fetchRegistry: false
     service-url:
-      defaultZone: http://discovery:${server.port}/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port}/eureka/
 
-spring.cloud.config.discovery.enabled: true
+security:
+  user:
+    name: hong
+    password: 111111
+
+logging:
+  config: classpath:config/log4j2-spring.xml

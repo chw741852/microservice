@@ -10,7 +10,8 @@ apply plugin: 'spring-boot'
 
 dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
-    testCompile('org.springframework.boot:spring-boot-starter-test:' + springBootVersion)
+    compile('org.springframework.boot:spring-boot-starter-security:' + springBootVersion)
+    compile('org.springframework.boot:spring-boot-starter-log4j2:' + springBootVersion)
 }
 
 dependencyManagement {

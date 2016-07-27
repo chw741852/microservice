@@ -24,7 +24,7 @@ subprojects {
         mybatisVersion = '1.1.1'
         mysqlVersion = '5.1.38'
         druidVersion = '1.0.18'
-        springCloudVersion = 'Brixton.SR3'
+        springCloudVersion = 'Brixton.SR4'
     }
 
     apply plugin: 'java'
@@ -38,6 +38,10 @@ subprojects {
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
         mavenCentral()
+    }
+
+    configurations {
+        all*.exclude module: 'spring-boot-starter-logging'
     }
 
     sourceSets {

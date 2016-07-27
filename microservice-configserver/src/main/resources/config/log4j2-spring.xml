@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="console_pattern">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}[%L]}{cyan} %clr{:}{faint} %m%n</Property>
+        <Property name="file_pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${sys:PID} --- [%15.15t] %-40.40c{1.}[%L] : %m%n</Property>
+        <!-- 日志文件大小 -->
+        <Property name="file_size">100MB</Property>
+        <Property name="file_name">logs/configserver.log</Property>
+        <Property name="gz_file_name">logs/%d{yyyy-MM}/configserver_%d{yyyy-MM-dd}-%i.log.gz</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT"><!-- 输出debug及以上级别的信息（onMatch），其他拒绝（onMismatch） -->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${console_pattern}"/>
+        </Console>
+
+        <!-- 输出trace及以上级别的日志到指定文件，最大10M，warn、error除外 -->
+        <RollingFile name="app_debug" fileName="${file_name}" filePattern="${gz_file_name}">
+            <PatternLayout pattern="${file_pattern}"/>
+            <Policies>
+                <!-- 每天压缩一次 -->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+                <!-- 每100MB压缩一次 -->
+                <SizeBasedTriggeringPolicy size="${file_size}" />
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+    </Appenders>
+    <loggers>
+        <Root level="info">
+            <AppenderRef ref="app_debug"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </loggers>
+</Configuration>
