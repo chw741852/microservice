@@ -13,9 +13,9 @@ endpoints:
   health:
     sensitive: false
 
-eureka:
-  instance:
-    hostname: gateway
-  client:
-    service-url:
-      defaultZone: http://hong:111111@localhost:8761/eureka/
+#eureka:
+#  instance:
+#    hostname: gateway
+#  client:
+#    service-url:
+#      defaultZone: http://hong:111111@localhost:8761/eureka/

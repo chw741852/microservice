@@ -7,12 +7,11 @@ spring:
       server:
         git:
           uri: file://Users/caihongwei/Documents/Development/MyGit/sora-repo
-          repos:
-            development:
-              pattern:
-                - */staging
-              uri: git@git.oschina.net:cai2008/sora-repo.git
-              hostKeyAlgorithm: ecdsa-sha2-nistp256
+#          repos:
+#            sora:
+#              pattern:
+#                - gateway*
+#              uri: file://Users/caihongwei/Documents/Development/MyGit/sora-repo
 #          basedir: cloudconfig
 
 security:
