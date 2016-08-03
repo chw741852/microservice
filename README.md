@@ -30,3 +30,7 @@
    * spring security 权限管理
    * thymeleaf模板
    * 使用redis共享session
+
+
+## 二、gradle command
+gradle build -x test  // build jar without test
