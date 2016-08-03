@@ -4,5 +4,5 @@ spring:
   cloud:
     config:
       uri: http://hong:111111@localhost:8888
-encrypt:
-  fail-on-error: false
+#encrypt:
+#  fail-on-error: false
